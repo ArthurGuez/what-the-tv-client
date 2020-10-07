@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 import { AuthContext } from '../../Context/auth';
 
 import useForm from '../../CustomHooks/useForm';
+import validateLogin from './ValidateLogin';
 
 const API = process.env.REACT_APP_API;
 
@@ -12,19 +13,17 @@ const Login = () => {
 	const initialState = {
 		username: '',
 		password: '',
-		isSubmitting: false,
 		errorMessage: null,
 	};
 
 	const { dispatch } = useContext(AuthContext);
 
-	const { handleChange, handleSubmit, data, setdata } = useForm(submit, initialState);
+	const { handleChange, handleSubmit, data, setData, errors } = useForm(initialState, validateLogin, submit);
 
 	const [redirect, setRedirect] = useState(false);
-
 	async function submit() {
 		try {
-			const res = await axios.post(`${API}/signin`, {
+			const res = await axios.post(`${API}/users/signin`, {
 				username: data.username,
 				password: data.password,
 			});
@@ -37,12 +36,7 @@ const Login = () => {
 				setRedirect(true);
 			}
 		} catch (error) {
-			setdata({
-				...data,
-				isSubmitting: false,
-				errorMessage: error.message,
-			});
-		}
+			
 	}
 
 	if (redirect) {
@@ -55,13 +49,20 @@ const Login = () => {
 					<label htmlFor="username"></label>
 					<input type="text" name="username" id="username" value={data.username} onChange={handleChange} />
 
+					{errors.email ? <span>{errors.email}</span> : null}
+
 					<label htmlFor="password"></label>
 					<input type="password" name="password" id="password" value={data.password} onChange={handleChange} />
+
+					{errors.password ? <span>{errors.password}</span> : null}
+
+					{data.errorMessage ? <span>{data.errorMessage}</span> : null}
 
 					<button type="submit">Let's Play!</button>
 				</form>
 
-				<p>Vous n'avez pas de compte ?</p>
+				<p>You don't have an account yet?</p>
+				<Link to="/signup">Register</Link>
 			</div>
 		);
 	}

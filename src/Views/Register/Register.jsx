@@ -3,6 +3,9 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 import useForm from '../../CustomHooks/useForm';
+import validateRegister from './ValidateRegister';
+
+const API = process.env.REACT_APP_API;
 
 const Register = () => {
 	const initialState = {
@@ -13,23 +16,42 @@ const Register = () => {
 		country: '',
 		gender: '',
 		password: '',
-		newsletter: '',
-		terms: '',
-		isSubmitting: false,
+		newsletter: false,
+		terms: false,
 		errorMessage: null,
 	};
 
-	const { handleChange, handleSubmit, data, setdata } = useForm(submit, initialState);
+	const { handleChange, handleSubmit, data, setdata } = useForm(initialState, validateRegister, submit);
 
 	const [redirect, setRedirect] = useState(false);
 
 	async function submit() {
 		try {
-		} catch (error) {}
+			const res = await axios.post(`${API}/users/signup`, {
+				username: data.username,
+				name: data.name,
+				email: data.email,
+				birthday: data.birthday,
+				country: data.country,
+				gender: data.gender,
+				password: data.password,
+				newsletter: data.newsletter,
+				terms: data.terms,
+			});
+
+			if (res.status === 200) {
+				setRedirect(true);
+			}
+		} catch (error) {
+			setData({
+				...data,
+				errorMessage: error.response.data.description,
+			});
+		}
 	}
 
 	if (redirect) {
-		return <Redirect to="/" />;
+		return <Redirect to="/login" />;
 	} else {
 		return (
 			<div className="register">
@@ -49,20 +71,19 @@ const Register = () => {
 					<input type="date" name="birthday" id="birthday" value={data.birthday} onChange={handleChange} />
 
 					<label htmlFor="country">Your Country *</label>
-					<select name="country" id="country">
-						<option value={data.country} onChange={handleChange}>
-							Where are you from?
-						</option>
+					<select name="country" id="country" onChange={handleChange}>
+						<option value="France">France</option>
+						<option value="United-States">United-States</option>
 					</select>
 
-					<label for="male">Male</label>
-					<input type="radio" id="male" name="gender" value={data.gender} onChange={handleChange} />
+					<label htmlFor="male">Male</label>
+					<input type="radio" id="male" name="gender" value="Male" onChange={handleChange} />
 
-					<label for="female">Female</label>
-					<input type="radio" id="female" name="gender" value={data.gender} onChange={handleChange} />
+					<label htmlFor="female">Female</label>
+					<input type="radio" id="female" name="gender" value="Female" onChange={handleChange} />
 
-					<label for="other">Other</label>
-					<input type="radio" id="other" name="gender" value={data.gender} onChange={handleChange} />
+					<label htmlFor="other">Other</label>
+					<input type="radio" id="other" name="gender" value="Other" onChange={handleChange} />
 
 					<h2>Security</h2>
 
@@ -74,10 +95,10 @@ const Register = () => {
 
 					<h2>Agreements</h2>
 					<label htmlFor="newsletter">I want to receive some cool news in my inbox.</label>
-					<input type="checkbox" name="newsletter" id="newsletter" value={data.newsletter} onChange={handleChange} />
+					<input type="checkbox" name="newsletter" id="newsletter" value="0" onChange={handleChange} />
 
 					<label htmlFor="terms">I agree to the terms and conditions of What The Tv.</label>
-					<input type="checkbox" name="terms" id="terms" value={data.terms} onChange={handleChange} />
+					<input type="checkbox" name="terms" id="terms" value="1" onChange={handleChange} />
 
 					<button type="submit">It's Showtime!</button>
 				</form>
