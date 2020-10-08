@@ -9,7 +9,7 @@ const Header = () => {
 		<header>
 			<nav>
 				<div className="header__logo-start">WHAT THE</div>
-				<div className="header__logo-start">TV</div>
+				<div className="header__logo-end">TV</div>
 				<Button content="Discover"></Button>
 			</nav>
 		</header>

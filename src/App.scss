@@ -1,5 +1,12 @@
 @import './vars.scss';
 
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Roboto'), url('./assets/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
 html {
 	scroll-behavior: smooth;
 }
@@ -10,7 +17,7 @@ html {
 
 body {
 	margin: 0;
-	font-family: 'Montserrat';
+	font-family: 'Roboto';
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 

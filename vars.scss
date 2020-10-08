@@ -2,3 +2,43 @@ $background-color: #171819;
 
 $primary-color: #ffffff;
 $secondary-color: #eec72c;
+
+$tablet-width: 768px;
+$desktop-width: 1025px;
+$wide-screen: 1400px;
+
+@mixin phone {
+	@media (max-width: #{$tablet-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin notPhone {
+	@media (min-width: #{$tablet-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin notDesktop {
+	@media (max-width: #{$desktop-width + 1px}) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: #{$desktop-width}) {
+		@content;
+	}
+}
+
+@mixin wideScreen {
+	@media (min-width: #{$wide-screen}) {
+		@content;
+	}
+}

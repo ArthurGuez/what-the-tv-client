@@ -11,6 +11,11 @@ import Login from './Views/Login/Login';
 
 import './App.scss';
 
+const initialState = {
+	isAuthenticated: !!localStorage.getItem('token'),
+	token: localStorage.getItem('token') || null,
+};
+
 const PrivateRoute = ({ component: Component, ...rest }) => {
 	const { state } = useContext(AuthContext);
 	return (
@@ -21,11 +26,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 			}}
 		/>
 	);
-};
-
-const initialState = {
-	isAuthenticated: !!localStorage.getItem('token'),
-	token: localStorage.getItem('token') || null,
 };
 
 function App() {
