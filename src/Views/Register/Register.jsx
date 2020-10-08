@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 
 import useForm from '../../CustomHooks/useForm';
@@ -62,7 +62,13 @@ const Register = () => {
 				<form onSubmit={handleSubmit} noValidate>
 					<h2>Personal Infos</h2>
 					<label htmlFor="username">Your Username *</label>
-					<input type="text" name="username" id="username" value={data.username} onChange={handleChange} />
+					<input
+						type="text"
+						name="username"
+						id="username"
+						value={data.username}
+						onChange={handleChange}
+					/>
 
 					<label htmlFor="name">Your Name *</label>
 					<input type="text" name="name" id="name" value={data.name} onChange={handleChange} />
@@ -71,10 +77,17 @@ const Register = () => {
 					<input type="email" name="email" id="email" value={data.email} onChange={handleChange} />
 
 					<label htmlFor="birthday">Your Date Of Birth</label>
-					<input type="date" name="birthday" id="birthday" value={data.birthday} onChange={handleChange} />
+					<input
+						type="date"
+						name="birthday"
+						id="birthday"
+						value={data.birthday}
+						onChange={handleChange}
+					/>
 
 					<label htmlFor="country">Your Country</label>
 					<select name="country" id="country" onChange={handleChange}>
+						<option value=""></option>
 						<option value="France">France</option>
 						<option value="United-States">United-States</option>
 					</select>
@@ -91,7 +104,13 @@ const Register = () => {
 					<h2>Security</h2>
 
 					<label htmlFor="password">Choose Your Password *</label>
-					<input type="password" name="password" id="password" value={data.password} onChange={handleChange} />
+					<input
+						type="password"
+						name="password"
+						id="password"
+						value={data.password}
+						onChange={handleChange}
+					/>
 
 					{errors.password ? <span>{errors.password}</span> : null}
 
@@ -100,15 +119,30 @@ const Register = () => {
 
 					<h2>Agreements</h2>
 					<label htmlFor="newsletter">I want to receive some cool news in my inbox.</label>
-					<input type="checkbox" name="newsletter" id="newsletter" checked={data.newsletter} onChange={handleCheck} />
+					<input
+						type="checkbox"
+						name="newsletter"
+						id="newsletter"
+						defaultChecked={data.newsletter}
+						onChange={handleCheck}
+					/>
 
 					<label htmlFor="terms">I agree to the terms and conditions of What The Tv.</label>
-					<input type="checkbox" name="terms" id="terms" value={data.terms} onChange={handleCheck} />
+					<input
+						type="checkbox"
+						name="terms"
+						id="terms"
+						defaultChecked={data.terms}
+						onChange={handleCheck}
+					/>
 
 					{data.errorMessage ? <span>{data.errorMessage}</span> : null}
 
 					<button type="submit">It's Showtime!</button>
 				</form>
+
+				<p>Already have an account?</p>
+				<Link to="/login">Login</Link>
 			</div>
 		);
 	}

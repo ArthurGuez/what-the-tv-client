@@ -57,7 +57,13 @@ const Login = () => {
 					{errors.username ? <span>{errors.username}</span> : null}
 
 					<label htmlFor="password"></label>
-					<input type="password" name="password" id="password" value={data.password} onChange={handleChange} />
+					<input
+						type="password"
+						name="password"
+						id="password"
+						value={data.password}
+						onChange={handleChange}
+					/>
 
 					{errors.password ? <span>{errors.password}</span> : null}
 

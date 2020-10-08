@@ -17,7 +17,7 @@ const useForm = (initialState, validate, callback) => {
 		const { name, checked } = event.target;
 		await setData({
 			...data,
-			[name]: !checked,
+			[name]: checked,
 		});
 		console.log(data);
 	};
@@ -29,11 +29,9 @@ const useForm = (initialState, validate, callback) => {
 		});
 		setErrors(validate(data));
 		setIsSubmitting(true);
-		console.log({ isSubmitting });
 	};
 
 	useEffect(() => {
-		console.log(Object.keys(errors));
 		if (Object.keys(errors).length === 0 && isSubmitting) {
 			callback();
 		}
