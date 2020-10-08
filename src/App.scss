@@ -1,0 +1,83 @@
+html {
+	scroll-behavior: smooth;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: 'Montserrat';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	background-color: $background-color;
+	color: $primary-color;
+
+	h1 {
+		font-size: 3.5rem;
+		line-height: 4.5rem;
+		font-weight: bold;
+		color: $secondary-color;
+
+		@include tablet {
+			font-size: 3.5rem;
+			line-height: 3.5rem;
+		}
+
+		@include phone {
+			font-size: 3rem;
+			line-height: 3rem;
+		}
+	}
+
+	h2 {
+		font-size: 2rem;
+		line-height: 2.25rem;
+		font-weight: bold;
+		color: $secondary-color;
+
+		@include tablet {
+			font-size: 2rem;
+			line-height: 2rem;
+		}
+
+		@include phone {
+			font-size: 1.75rem;
+			line-height: 1.75rem;
+		}
+	}
+
+	h3 {
+		font-size: 1rem;
+	}
+
+	h4 {
+		font-size: 1rem;
+	}
+
+	p {
+		font-size: 1.25rem;
+		line-height: 1.5rem;
+	}
+
+	a {
+		margin: 0 20px;
+		text-decoration: none;
+		font-weight: bold;
+		font-size: 1.125rem;
+	}
+
+	button {
+		font-size: 1.125rem;
+		font-weight: bold;
+		outline: none;
+		border: none;
+	}
+
+	input {
+		font-family: 'Montserrat';
+		font-size: 1rem;
+	}
+}

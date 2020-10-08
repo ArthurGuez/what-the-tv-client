@@ -18,10 +18,13 @@ const Register = () => {
 		password: '',
 		newsletter: false,
 		terms: false,
-		errorMessage: null,
 	};
 
-	const { handleChange, handleSubmit, data, setdata } = useForm(initialState, validateRegister, submit);
+	const { handleChange, handleCheck, handleSubmit, data, setData, errors } = useForm(
+		initialState,
+		validateRegister,
+		submit
+	);
 
 	const [redirect, setRedirect] = useState(false);
 
@@ -39,7 +42,7 @@ const Register = () => {
 				terms: data.terms,
 			});
 
-			if (res.status === 200) {
+			if (res.status === 201) {
 				setRedirect(true);
 			}
 		} catch (error) {
@@ -70,7 +73,7 @@ const Register = () => {
 					<label htmlFor="birthday">Your Date Of Birth</label>
 					<input type="date" name="birthday" id="birthday" value={data.birthday} onChange={handleChange} />
 
-					<label htmlFor="country">Your Country *</label>
+					<label htmlFor="country">Your Country</label>
 					<select name="country" id="country" onChange={handleChange}>
 						<option value="France">France</option>
 						<option value="United-States">United-States</option>
@@ -90,15 +93,19 @@ const Register = () => {
 					<label htmlFor="password">Choose Your Password *</label>
 					<input type="password" name="password" id="password" value={data.password} onChange={handleChange} />
 
+					{errors.password ? <span>{errors.password}</span> : null}
+
 					<label htmlFor="passwordConfirm">Confirm Your Password *</label>
 					<input type="password" name="passwordConfirm" id="passwordConfirm" />
 
 					<h2>Agreements</h2>
 					<label htmlFor="newsletter">I want to receive some cool news in my inbox.</label>
-					<input type="checkbox" name="newsletter" id="newsletter" value="0" onChange={handleChange} />
+					<input type="checkbox" name="newsletter" id="newsletter" checked={data.newsletter} onChange={handleCheck} />
 
 					<label htmlFor="terms">I agree to the terms and conditions of What The Tv.</label>
-					<input type="checkbox" name="terms" id="terms" value="1" onChange={handleChange} />
+					<input type="checkbox" name="terms" id="terms" value={data.terms} onChange={handleCheck} />
+
+					{data.errorMessage ? <span>{data.errorMessage}</span> : null}
 
 					<button type="submit">It's Showtime!</button>
 				</form>

@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
+import './Login.scss';
+
 import { AuthContext } from '../../Context/auth';
 
 import useForm from '../../CustomHooks/useForm';
@@ -13,7 +15,6 @@ const Login = () => {
 	const initialState = {
 		username: '',
 		password: '',
-		errorMessage: null,
 	};
 
 	const { dispatch } = useContext(AuthContext);
@@ -36,7 +37,11 @@ const Login = () => {
 				setRedirect(true);
 			}
 		} catch (error) {
-			
+			setData({
+				...data,
+				errorMessage: error.response.data.description,
+			});
+		}
 	}
 
 	if (redirect) {
@@ -49,7 +54,7 @@ const Login = () => {
 					<label htmlFor="username"></label>
 					<input type="text" name="username" id="username" value={data.username} onChange={handleChange} />
 
-					{errors.email ? <span>{errors.email}</span> : null}
+					{errors.username ? <span>{errors.username}</span> : null}
 
 					<label htmlFor="password"></label>
 					<input type="password" name="password" id="password" value={data.password} onChange={handleChange} />
@@ -62,7 +67,7 @@ const Login = () => {
 				</form>
 
 				<p>You don't have an account yet?</p>
-				<Link to="/signup">Register</Link>
+				<Link to="/register">Register</Link>
 			</div>
 		);
 	}

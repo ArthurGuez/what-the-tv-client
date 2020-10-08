@@ -1,0 +1,16 @@
+.button {
+	cursor: pointer;
+	// background-color: $primary-color;
+	border: 2px solid $secondary-color;
+	border-radius: 8px;
+
+	&:hover {
+		transform: scale(1.08);
+	}
+
+	&--small {
+	}
+
+	&--large {
+	}
+}
