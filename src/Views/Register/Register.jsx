@@ -16,6 +16,7 @@ const Register = () => {
 		country: '',
 		gender: '',
 		password: '',
+		passwordConfirm: '',
 		newsletter: false,
 		terms: false,
 	};
@@ -115,7 +116,15 @@ const Register = () => {
 					{errors.password ? <span>{errors.password}</span> : null}
 
 					<label htmlFor="passwordConfirm">Confirm Your Password *</label>
-					<input type="password" name="passwordConfirm" id="passwordConfirm" />
+					<input
+						type="password"
+						name="passwordConfirm"
+						id="passwordConfirm"
+						value={data.passwordConfirm}
+						onChange={handleChange}
+					/>
+
+					{errors.passwordConfirm ? <span>{errors.passwordConfirm}</span> : null}
 
 					<h2>Agreements</h2>
 					<label htmlFor="newsletter">I want to receive some cool news in my inbox.</label>
