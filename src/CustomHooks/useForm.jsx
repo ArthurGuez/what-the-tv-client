@@ -6,7 +6,7 @@ const useForm = (initialState, validate, callback) => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const handleChange = async (event) => {
-		const { name, value, checked } = event.target;
+		const { name, value } = event.target;
 		await setData({
 			...data,
 			[name]: value,
@@ -19,7 +19,6 @@ const useForm = (initialState, validate, callback) => {
 			...data,
 			[name]: checked,
 		});
-		console.log(data);
 	};
 
 	const handleSubmit = (event) => {
