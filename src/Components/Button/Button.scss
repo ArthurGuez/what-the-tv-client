@@ -5,10 +5,13 @@
 	border: 2px solid $secondary-color;
 	border-radius: 8px;
 	background-color: Transparent;
+	transition: 0.5s;
 	height: 30px;
+	width: 50%;
 
 	&:hover {
-		transform: scale(1.08);
+		background-color: $secondary-color;
+		color: $background-color;
 	}
 
 	&--small {

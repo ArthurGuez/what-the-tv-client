@@ -2,9 +2,9 @@ import React from 'react';
 import './Button.scss';
 
 const Button = (props) => {
-	const { content } = props;
+	const { content, className } = props;
 
-	return <button className="button">{content}</button>;
+	return <button className={`button ${className ? className : ""}`}>{content}</button>;
 };
 
 export default Button;

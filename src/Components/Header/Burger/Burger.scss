@@ -22,6 +22,21 @@
 		background: $secondary-color;
 		border-radius: 10px;
 		transition: all 0.3s linear;
-		transform-origin: 1px;
+		transform-origin: 0.6em;
+	}
+
+	&--open {
+		:first-child {
+			transform: rotate(45deg);
+		}
+
+		:nth-child(2) {
+			opacity: 0;
+			transform: translateX(20px);
+		}
+
+		:nth-child(3) {
+			transform: rotate(-45deg);
+		}
 	}
 }

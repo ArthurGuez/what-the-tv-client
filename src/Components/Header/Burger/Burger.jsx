@@ -6,7 +6,7 @@ import './Burger.scss';
 const Burger = ({open, setOpen}) => {
 
     return (
-        <div className="burger" open={open} onClick={() => setOpen(!open)}>
+        <div className={!open ?"burger" : "burger burger--open"} open={open} onClick={() => setOpen(!open)}>
             <div className="burger__line"></div>
             <div className="burger__line"></div>
             <div className="burger__line"></div>

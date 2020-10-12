@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 
 import Burger from './Burger/Burger'
-import MainMenu from './MainMenu/MainMenu'
+import Panel from './Panel/Panel'
 
 import './Header.scss';
 
 import logo from '../../assets/images/logo.png';
-import avatar from '../../assets/images/avatar.jpg';
+import avatar from '../../assets/images/avatar.svg';
 
 const Header = () => {
 	const [openBurger, setOpenBurger] = useState(false);
@@ -18,7 +18,7 @@ const Header = () => {
 				<div className="nav__menu">
 					<Burger open={openBurger} setOpen={setOpenBurger}/>
 
-					<MainMenu open={openBurger} setOpen={setOpenBurger}/>
+					<Panel open={openBurger} setOpen={setOpenBurger}/>
 				</div>
 				
 				<div className="nav__logo">
