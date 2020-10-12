@@ -3,11 +3,12 @@
 .button {
 	cursor: pointer;
 	border: 2px solid $secondary-color;
-	border-radius: 8px;
+	border-radius: 1em;
 	background-color: Transparent;
 	transition: 0.5s;
 	height: 30px;
 	width: 50%;
+	font-weight: normal;
 
 	&:hover {
 		background-color: $secondary-color;

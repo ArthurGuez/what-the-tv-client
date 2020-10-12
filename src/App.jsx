@@ -5,7 +5,7 @@ import axios from 'axios';
 import reducer from './reducer';
 import { AuthContext } from './Context/auth';
 
-import PrivateRoute from './PrivateRoute'
+import PrivateRoute from './PrivateRoute';
 import Header from './Components/Header/Header';
 import Home from './Views/Home/Home';
 import Register from './Views/Register/Register';
@@ -21,14 +21,14 @@ function App() {
 		token: localStorage.getItem('token'),
 		user: null,
 		isFetching: true,
-	};	
+	};
 
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	useEffect(() => {
 		const fetchUser = async () => {
-		const token = localStorage.getItem('token');
-			
+			const token = localStorage.getItem('token');
+
 			if (token) {
 				const res = await axios.get(`${API}/users/me`, {
 					headers: {

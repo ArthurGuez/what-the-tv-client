@@ -1,0 +1,11 @@
+.menu {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	height: auto;
+
+	&__item {
+		margin: 0 1em;
+		width: 8em;
+	}
+}

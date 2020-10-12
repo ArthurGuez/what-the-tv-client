@@ -2,24 +2,24 @@
 
 .panel {
 	display: flex;
+	width: 100%;
 	flex-direction: column;
-	justify-content: flex-start;
 	margin-left: -1em;
 	height: 100vh;
 	position: absolute;
 	transition: transform 0.3s ease-in-out;
 	overflow-x: hidden;
+	margin-top: 1em;
+	align-items: center;
 	transform: translateX(-100%);
 
 	&--open {
 		background-color: $background-color;
 		transform: translateX(0);
-		width: 100%;
-		align-items: center;
-		margin-top: 1em;
 	}
 
 	&__item {
 		margin: 2em 0 0 0.5em;
+		width: 12em;
 	}
 }

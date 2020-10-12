@@ -8,6 +8,12 @@
 	height: 10vh;
 	padding: 1em;
 
+	&__menu {
+		@include desktop {
+			order: 1;
+		}
+	}
+
 	&__logo {
 		display: flex;
 		align-items: center;
@@ -16,6 +22,10 @@
 	&__user {
 		display: flex;
 		align-items: center;
+
+		@include desktop {
+			order: 2;
+		}
 	}
 }
 
