@@ -1,0 +1,12 @@
+.mainMenu {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100vh;
+	position: absolute;
+	transform: translateX(-100%);
+
+	&--open {
+		transform: translateX(0);
+	}
+}

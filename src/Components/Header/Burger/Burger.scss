@@ -1,0 +1,27 @@
+@import '../../../../vars.scss';
+
+.burger {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	height: 3em;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.burger {
+	&__line {
+		width: 4em;
+		height: 0.35em;
+		background: $secondary-color;
+		border-radius: 10px;
+		transition: all 0.3s linear;
+		transform-origin: 1px;
+	}
+}

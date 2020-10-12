@@ -38,8 +38,8 @@ function App() {
 				if (res.status === 200) {
 					dispatch({
 						type: 'LOAD_USER',
-						payload: {},
-						token: 'toto',
+						payload: res.data.user,
+						token,
 					});
 				}
 			}
