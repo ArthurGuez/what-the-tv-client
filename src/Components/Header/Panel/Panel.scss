@@ -13,6 +13,10 @@
 	align-items: center;
 	transform: translateX(-100%);
 
+	@include desktop {
+		display: none;
+	}
+
 	&--open {
 		background-color: $background-color;
 		transform: translateX(0);

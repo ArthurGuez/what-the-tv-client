@@ -3,15 +3,13 @@ import React, { useState, useEffect } from 'react';
 import Burger from './Burger/Burger';
 import Panel from './Panel/Panel';
 import Menu from './Menu/Menu';
+import UserMenu from './UserMenu/UserMenu';
 
 import './Header.scss';
 
-import logo from '../../assets/images/logo.png';
-import avatar from '../../assets/images/avatar.svg';
-
 const Header = () => {
 	const [openBurger, setOpenBurger] = useState(false);
-	// const [openUser, setOpenUser] = useState(false);
+	const [openUser, setOpenUser] = useState(false);
 
 	const [isMobile, setMobile] = useState(window.innerWidth < 1025);
 
@@ -39,13 +37,11 @@ const Header = () => {
 					)}
 				</div>
 
-				<div className="nav__logo">
-					<img src={logo} alt="Return to homepage"></img>
-				</div>
+				<a href="/">
+					<div className="nav__logo"></div>
+				</a>
 
-				<div className="nav__user">
-					<img className="user__avatar" src={avatar} alt="Open profile menu"></img>
-				</div>
+				<UserMenu open={openUser} setOpen={setOpenUser} />
 			</nav>
 		</header>
 	);
