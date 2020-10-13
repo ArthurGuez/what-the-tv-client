@@ -23,27 +23,25 @@ const Header = () => {
 	});
 
 	return (
-		<header>
-			<nav className="nav">
-				<div className="nav__menu">
-					{isMobile ? (
-						<>
-							<Burger open={openBurger} setOpen={setOpenBurger} />
+		<nav className="nav">
+			<div className="nav__menu">
+				{isMobile ? (
+					<>
+						<Burger open={openBurger} setOpen={setOpenBurger} />
 
-							<Panel open={openBurger} setOpen={setOpenBurger} />
-						</>
-					) : (
-						<Menu />
-					)}
-				</div>
+						<Panel open={openBurger} setOpen={setOpenBurger} />
+					</>
+				) : (
+					<Menu />
+				)}
+			</div>
 
-				<a href="/">
-					<div className="nav__logo"></div>
-				</a>
+			<a href="/">
+				<div className="nav__logo"></div>
+			</a>
 
-				<UserMenu open={openUser} setOpen={setOpenUser} />
-			</nav>
-		</header>
+			<UserMenu open={openUser} setOpen={setOpenUser} />
+		</nav>
 	);
 };
 

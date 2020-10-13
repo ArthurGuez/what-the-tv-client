@@ -30,15 +30,15 @@ body {
 		font-weight: bold;
 		color: $secondary-color;
 
-		// @include tablet {
-		// 	font-size: 3.5rem;
-		// 	line-height: 3.5rem;
-		// }
+		@include tablet {
+			font-size: 3.5rem;
+			line-height: 3.5rem;
+		}
 
-		// @include phone {
-		// 	font-size: 3rem;
-		// 	line-height: 3rem;
-		// }
+		@include phone {
+			font-size: 3rem;
+			line-height: 3rem;
+		}
 	}
 
 	h2 {
@@ -47,15 +47,15 @@ body {
 		font-weight: bold;
 		color: $secondary-color;
 
-		// @include tablet {
-		// 	font-size: 2rem;
-		// 	line-height: 2rem;
-		// }
+		@include tablet {
+			font-size: 2rem;
+			line-height: 2rem;
+		}
 
-		// @include phone {
-		// 	font-size: 1.75rem;
-		// 	line-height: 1.75rem;
-		// }
+		@include phone {
+			font-size: 1.75rem;
+			line-height: 1.75rem;
+		}
 	}
 
 	h3 {

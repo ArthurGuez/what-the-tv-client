@@ -7,7 +7,7 @@ import './UserMenu.scss';
 import avatar from '../../../assets/images/avatar.svg';
 
 const UserMenu = ({ open, setOpen }) => {
-	const { dispatch } = useContext(AuthContext);
+	const { state, dispatch } = useContext(AuthContext);
 
 	const logOut = () => {
 		dispatch({
@@ -15,15 +15,41 @@ const UserMenu = ({ open, setOpen }) => {
 		});
 	};
 
+	function windowOnClick(event) {
+		if (!event.target.matches('.nav__user')) {
+			setOpen(false);
+			window.removeEventListener('click', windowOnClick);
+		}
+	}
+
+	function iconOnClick(event) {
+		event.stopPropagation();
+		setOpen(true);
+		window.addEventListener('click', windowOnClick);
+	}
+
 	return (
-		<div className="nav__user" onClick={() => setOpen(!open)}>
+		<div
+			className="nav__user"
+			onClick={(event) => {
+				iconOnClick(event);
+				setOpen(!open);
+			}}
+		>
 			<img className="user__avatar" src={avatar} alt="Profile menu"></img>
 			{open ? (
 				<div className="userMenu">
-					<ul>
-						<li>Mon Compte</li>
-						<li onClick={logOut}>Déconnexion</li>
-					</ul>
+					{state.isAuthenticated ? (
+						<ul>
+							<li>My Account</li>
+							<li onClick={logOut}>Logout</li>
+						</ul>
+					) : (
+						<ul>
+							<li>Login</li>
+							<li>Register</li>
+						</ul>
+					)}
 				</div>
 			) : null}
 		</div>

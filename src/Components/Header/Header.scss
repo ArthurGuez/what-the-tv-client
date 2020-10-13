@@ -2,11 +2,12 @@
 
 .nav {
 	display: flex;
+	// position: fixed;
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	height: 10vh;
-	padding: 1em;
+	height: auto;
+	padding: 0 1em;
 
 	&__menu {
 		@include desktop {
@@ -28,6 +29,7 @@
 	&__user {
 		display: flex;
 		align-items: center;
+		position: relative;
 
 		@include desktop {
 			order: 2;

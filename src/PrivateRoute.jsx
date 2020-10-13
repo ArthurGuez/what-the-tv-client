@@ -7,7 +7,6 @@ import Loader from './Components/Loader/Loader';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
 	const { state } = useContext(AuthContext);
-	console.log('private', state);
 	return (
 		<Route
 			{...rest}
