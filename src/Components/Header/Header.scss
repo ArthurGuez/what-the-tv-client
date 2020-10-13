@@ -2,12 +2,15 @@
 
 .nav {
 	display: flex;
-	// position: fixed;
 	justify-content: space-between;
 	align-items: center;
+	position: fixed;
+	top: 0;
 	width: 100%;
-	height: auto;
-	padding: 0 1em;
+	padding: 0 1rem;
+	opacity: 0.95;
+	z-index: 100;
+	background-color: $background-color;
 
 	&__menu {
 		@include desktop {

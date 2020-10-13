@@ -8,10 +8,10 @@ import './Panel.scss';
 const Panel = ({ open }) => {
 	return (
 		<div className={open ? 'panel panel--open' : 'panel'} open={open}>
-			<Button className={'panel__item'} content="Discover" />
-			<Button className={'panel__item'} content="Play" />
-			<Button className={'panel__item'} content="Contribute" />
-			<Button className={'panel__item'} content="Leaderboards" />
+			<Button className={'panel__item'}>Discover</Button>
+			<Button className={'panel__item'}>Play</Button>
+			<Button className={'panel__item'}>Contribute</Button>
+			<Button className={'panel__item'}>Leaderboards</Button>
 		</div>
 	);
 };

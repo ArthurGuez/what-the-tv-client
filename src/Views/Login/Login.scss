@@ -1,0 +1,24 @@
+.login {
+	padding: 5rem 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&__redirect {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+.form {
+	&__input {
+		margin-bottom: 1.5em;
+	}
+}

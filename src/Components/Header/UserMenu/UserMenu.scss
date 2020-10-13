@@ -19,9 +19,10 @@
 			padding: 0.5rem 0;
 			cursor: pointer;
 			transition: color 0.3s;
-		}
-		li:hover {
-			color: $secondary-color;
+
+			&:hover {
+				color: $secondary-color;
+			}
 		}
 	}
 }

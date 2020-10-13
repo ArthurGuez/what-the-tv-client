@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+
+import './Register.scss';
 
 import useForm from '../../CustomHooks/useForm';
 import validateRegister from './ValidateRegister';
+
+import Button from '../../Components/Button/Button';
+import Input from '../../Components/Input/Input';
 
 const API = process.env.REACT_APP_API;
 
@@ -60,98 +65,126 @@ const Register = () => {
 		return (
 			<div className="register">
 				<h1>Join What The TV</h1>
-				<form onSubmit={handleSubmit} noValidate>
+				<form className="register__form" onSubmit={handleSubmit} noValidate>
 					<h2>Personal Infos</h2>
-					<label htmlFor="username">Your Username *</label>
-					<input
-						type="text"
-						name="username"
-						id="username"
-						value={data.username}
-						onChange={handleChange}
-					/>
+					<div className="form__input">
+						<label htmlFor="username">Your Username *</label>
+						<Input
+							type="text"
+							name="username"
+							id="username"
+							value={data.username}
+							onChange={handleChange}
+						/>
+					</div>
 
-					<label htmlFor="name">Your Name *</label>
-					<input type="text" name="name" id="name" value={data.name} onChange={handleChange} />
+					<div className="form__input">
+						<label htmlFor="name">Your Name *</label>
+						<Input type="text" name="name" id="name" value={data.name} onChange={handleChange} />
+					</div>
 
-					<label htmlFor="email">Your Email *</label>
-					<input type="email" name="email" id="email" value={data.email} onChange={handleChange} />
+					<div className="form__input">
+						<label htmlFor="email">Your Email *</label>
+						<Input
+							type="email"
+							name="email"
+							id="email"
+							value={data.email}
+							onChange={handleChange}
+						/>
+					</div>
 
-					<label htmlFor="birthday">Your Date Of Birth</label>
-					<input
-						type="date"
-						name="birthday"
-						id="birthday"
-						value={data.birthday}
-						onChange={handleChange}
-					/>
+					<div className="form__input">
+						<label htmlFor="birthday">Your Date Of Birth</label>
+						<Input
+							type="date"
+							name="birthday"
+							id="birthday"
+							value={data.birthday}
+							onChange={handleChange}
+						/>
+					</div>
 
-					<label htmlFor="country">Your Country</label>
-					<select name="country" id="country" onChange={handleChange}>
-						<option value=""></option>
-						<option value="France">France</option>
-						<option value="United-States">United-States</option>
-					</select>
+					<div className="form__input">
+						<label htmlFor="country">Your Country</label>
+						<select name="country" id="country" onChange={handleChange}>
+							<option value=""></option>
+							<option value="France">France</option>
+							<option value="United-States">United-States</option>
+						</select>
+					</div>
 
-					<label htmlFor="male">Male</label>
-					<input type="radio" id="male" name="gender" value="Male" onChange={handleChange} />
+					<div className="form__input">
+						<label htmlFor="male">Male</label>
+						<Input type="radio" id="male" name="gender" value="Male" onChange={handleChange} />
 
-					<label htmlFor="female">Female</label>
-					<input type="radio" id="female" name="gender" value="Female" onChange={handleChange} />
+						<label htmlFor="female">Female</label>
+						<Input type="radio" id="female" name="gender" value="Female" onChange={handleChange} />
 
-					<label htmlFor="other">Other</label>
-					<input type="radio" id="other" name="gender" value="Other" onChange={handleChange} />
+						<label htmlFor="other">Other</label>
+						<Input type="radio" id="other" name="gender" value="Other" onChange={handleChange} />
+					</div>
 
 					<h2>Security</h2>
-
-					<label htmlFor="password">Choose Your Password *</label>
-					<input
-						type="password"
-						name="password"
-						id="password"
-						value={data.password}
-						onChange={handleChange}
-					/>
+					<div className="form__input">
+						<label htmlFor="password">Choose Your Password *</label>
+						<Input
+							type="password"
+							name="password"
+							id="password"
+							value={data.password}
+							onChange={handleChange}
+						/>
+					</div>
 
 					{errors.password ? <span>{errors.password}</span> : null}
 
-					<label htmlFor="passwordConfirm">Confirm Your Password *</label>
-					<input
-						type="password"
-						name="passwordConfirm"
-						id="passwordConfirm"
-						value={data.passwordConfirm}
-						onChange={handleChange}
-					/>
+					<div className="form__input">
+						<label htmlFor="passwordConfirm">Confirm Your Password *</label>
+						<Input
+							type="password"
+							name="passwordConfirm"
+							id="passwordConfirm"
+							value={data.passwordConfirm}
+							onChange={handleChange}
+						/>
+					</div>
 
 					{errors.passwordConfirm ? <span>{errors.passwordConfirm}</span> : null}
 
 					<h2>Agreements</h2>
-					<label htmlFor="newsletter">I want to receive some cool news in my inbox.</label>
-					<input
-						type="checkbox"
-						name="newsletter"
-						id="newsletter"
-						defaultChecked={data.newsletter}
-						onChange={handleCheck}
-					/>
 
-					<label htmlFor="terms">I agree to the terms and conditions of What The Tv.</label>
-					<input
-						type="checkbox"
-						name="terms"
-						id="terms"
-						defaultChecked={data.terms}
-						onChange={handleCheck}
-					/>
+					<div className="form__input">
+						<label htmlFor="newsletter">I want to receive some cool news in my inbox</label>
+						<Input
+							type="checkbox"
+							name="newsletter"
+							id="newsletter"
+							defaultChecked={data.newsletter}
+							onChange={handleCheck}
+						/>
+					</div>
+
+					<div className="form__input">
+						<label htmlFor="terms">I agree to the terms and conditions of What The TV</label>
+						<Input
+							type="checkbox"
+							name="terms"
+							id="terms"
+							defaultChecked={data.terms}
+							onChange={handleCheck}
+						/>
+					</div>
 
 					{data.errorMessage ? <span>{data.errorMessage}</span> : null}
 
-					<button type="submit">It's Showtime!</button>
+					<Button type="submit">It's Showtime!</Button>
 				</form>
 
-				<p>Already have an account?</p>
-				<Link to="/login">Login</Link>
+				<div className="register__redirect">
+					<p>Already have an account?</p>
+					<Button toLink="/login">Login</Button>
+				</div>
 			</div>
 		);
 	}
