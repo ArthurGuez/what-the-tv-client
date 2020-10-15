@@ -10,6 +10,7 @@ import Header from './Components/Header/Header';
 import Home from './Views/Home/Home';
 import Register from './Views/Register/Register';
 import Login from './Views/Login/Login';
+import Play from './Views/Play/Play';
 
 import './App.scss';
 
@@ -56,9 +57,11 @@ function App() {
 			<Header />
 			<Router>
 				<Switch>
-					<PrivateRoute exact path="/" component={Home} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/login" component={Login} />
+
+					<PrivateRoute exact path="/" component={Home} />
+					<PrivateRoute exact path="/play/:snapId" component={Play} />
 				</Switch>
 			</Router>
 		</AuthContext.Provider>

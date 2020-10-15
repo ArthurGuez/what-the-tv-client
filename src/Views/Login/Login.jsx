@@ -45,7 +45,6 @@ const Login = () => {
 				setRedirect(true);
 			}
 		} catch (error) {
-			console.log({ error });
 			setData({
 				...data,
 				errorMessage: error.response.data.description,

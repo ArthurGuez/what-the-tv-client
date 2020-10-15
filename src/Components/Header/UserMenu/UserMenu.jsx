@@ -49,7 +49,9 @@ const UserMenu = ({ open, setOpen }) => {
 							<li>
 								<a href="/login">Login</a>
 							</li>
-							<li>Register</li>
+							<li>
+								<a href="/register">Register</a>
+							</li>
 						</ul>
 					)}
 				</div>

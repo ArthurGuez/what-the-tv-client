@@ -23,6 +23,13 @@
 			&:hover {
 				color: $secondary-color;
 			}
+			a {
+				color: inherit;
+				font-family: inherit;
+				font-weight: inherit;
+				font-size: inherit;
+				text-decoration: inherit;
+			}
 		}
 	}
 }

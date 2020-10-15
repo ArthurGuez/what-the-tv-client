@@ -15,7 +15,6 @@ const API = process.env.REACT_APP_API;
 const Register = () => {
 	const initialState = {
 		username: '',
-		name: '',
 		email: '',
 		birthday: '',
 		country: '',
@@ -38,7 +37,6 @@ const Register = () => {
 		try {
 			const res = await axios.post(`${API}/users/signup`, {
 				username: data.username,
-				name: data.name,
 				email: data.email,
 				birthday: data.birthday,
 				country: data.country,
@@ -76,11 +74,6 @@ const Register = () => {
 							value={data.username}
 							onChange={handleChange}
 						/>
-					</div>
-
-					<div className="form__input">
-						<label htmlFor="name">Your Name *</label>
-						<Input type="text" name="name" id="name" value={data.name} onChange={handleChange} />
 					</div>
 
 					<div className="form__input">

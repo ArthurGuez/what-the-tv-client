@@ -1,41 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+
+import { AuthContext } from '../../Context/auth';
 
 import './Home.scss';
 
 const API = process.env.REACT_APP_API;
 
 const Home = () => {
-	const [snaps, setSnaps] = useState();
+	const { state: authState } = useContext(AuthContext);
+	const [snaps, setSnaps] = useState([]);
 
-	// useEffect(() => {
-	// 	const fetchRecentSnaps = async () => {
-	// 		const res = await axios(`${API}/snapshots/signin`);
-	// 		setSnaps(res.data.content.rendered);
-	// 	};
-	// 	fetchRecentSnaps();
-	// }, []);
+	useEffect(() => {
+		const fetchRecentSnaps = async () => {
+			const res = await axios(`${API}/snapshots/mostrecent`, {
+				headers: {
+					Authorization: `Bearer ${authState.token}`,
+				},
+			});
+			setSnaps(res.data);
+		};
+		fetchRecentSnaps();
+	}, [authState.token]);
 
 	return (
 		<main className="home">
 			<h1>Previously On What The TV...</h1>
+
 			<section>
 				<h2>Recent Snapshots</h2>
 				<div className="home__recent-snaps">
-					<div className="recent-snaps__snap">
-						<img src="" alt="" />
-					</div>
-					<div className="recent-snaps__snap">
-						<img src="" alt="" />
-					</div>
-					<div className="recent-snaps__snap">
-						<img src="" alt="" />
-					</div>
-					<div className="recent-snaps__snap">
-						<img src="" alt="" />
-					</div>
+					{snaps.map((snap, i) => (
+						<a key={i} href={`play/${snap.id}`}>
+							<div className="recent-snaps__snap">
+								<img src={snap.path} alt="A snapshot" />
+							</div>
+						</a>
+					))}
 				</div>
 			</section>
+
 			<section>
 				<h2>Leaderboards</h2>
 				<div className="home__leaderboards">
@@ -77,6 +81,7 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
+
 			<section>
 				<h2>Snapshot of the Day</h2>
 				<div className="home__day-snap">

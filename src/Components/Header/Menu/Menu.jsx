@@ -7,10 +7,18 @@ import './Menu.scss';
 const Menu = () => {
 	return (
 		<div className="menu">
-			<Button className={'menu__item'}>Discover</Button>
-			<Button className={'menu__item'}>Play</Button>
-			<Button className={'menu__item'}>Contribute</Button>
-			<Button className={'menu__item'}>Leaderboards</Button>
+			<Button className={'menu__item'} toLink="/discover">
+				Discover
+			</Button>
+			<Button className={'menu__item'} toLink="/play">
+				Play
+			</Button>
+			<Button className={'menu__item'} toLink="/contribute">
+				Contribute
+			</Button>
+			<Button className={'menu__item'} toLink="/leaderboards">
+				Leaderboards
+			</Button>
 		</div>
 	);
 };
