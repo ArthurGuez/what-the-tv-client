@@ -26,7 +26,9 @@ const useForm = (initialState, validate, callback) => {
 		setData({
 			...data,
 		});
-		setErrors(validate(data));
+		if (validate) {
+			setErrors(validate(data));
+		}
 		setIsSubmitting(true);
 	};
 

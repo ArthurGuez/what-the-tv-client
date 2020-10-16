@@ -130,7 +130,7 @@ const Register = () => {
 						/>
 					</div>
 
-					{errors.password ? <span>{errors.password}</span> : null}
+					{errors.password ? <div>{errors.password}</div> : null}
 
 					<div className="form__input">
 						<label htmlFor="passwordConfirm">Confirm Your Password *</label>

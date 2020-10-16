@@ -13,7 +13,7 @@ const Home = () => {
 
 	useEffect(() => {
 		const fetchRecentSnaps = async () => {
-			const res = await axios(`${API}/snapshots/mostrecent`, {
+			const res = await axios.get(`${API}/snapshots/mostrecent`, {
 				headers: {
 					Authorization: `Bearer ${authState.token}`,
 				},
