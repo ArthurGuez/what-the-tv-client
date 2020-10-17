@@ -25,7 +25,7 @@ const Home = () => {
 
 	return (
 		<main className="home">
-			<h1>Previously On What The TV...</h1>
+			<h1>PREVIOUSLY ON WHAT THE TV...</h1>
 
 			<section>
 				<h2>Recent Snapshots</h2>

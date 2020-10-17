@@ -10,6 +10,11 @@
 		display: flex;
 		flex-wrap: wrap;
 		width: 100%;
+
+		a {
+			display: flex;
+			width: 49%;
+		}
 	}
 
 	&__leaderboards {
@@ -23,9 +28,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 50%;
+		width: 100%;
 		border: 1px solid $secondary-color;
 		background-color: #000000;
+		margin: 0.5%;
 
 		img {
 			width: auto;
