@@ -15,9 +15,9 @@
 		text-align: justify;
 	}
 	&__image {
+		display: flex;
 		border: 1px solid $secondary-color;
 		background-color: #000000;
-		margin-bottom: 5%;
 
 		img {
 			width: auto;
@@ -26,21 +26,34 @@
 			max-height: 100%;
 		}
 	}
-	&__guess {
+
+	&__vote {
 		display: flex;
 		justify-content: center;
+		margin: 3% 0;
+		color: $secondary-color;
+		font-size: 2em;
+		unicode-bidi: bidi-override;
+		direction: rtl;
 
-		// input[type='text'] {
-		// 	width: 20px;
-		// 	height: 20px;
-		// 	padding-right: 50px;
-		// }
+		span {
+			padding: 0 0.1em;
 
-		// button[type='submit'] {
-		// 	margin-left: -50px;
-		// 	height: 20px;
-		// 	width: 5px;
-		// }
+			&:hover:before {
+				content: '\2605';
+				position: absolute;
+			}
+
+			&:hover ~ :before {
+				content: '\2605';
+				position: absolute;
+			}
+		}
+	}
+
+	&__interactions {
+		display: flex;
+		justify-content: space-between;
 	}
 }
 
@@ -51,5 +64,64 @@
 		height: 15px;
 		border-radius: 50%;
 		background-color: $secondary-color;
+	}
+}
+
+.interactions {
+	&__like {
+		margin-right: 2em;
+	}
+	&__like,
+	&__report {
+		transition: 0.5s;
+		&:hover {
+			fill: $secondary-color;
+		}
+	}
+
+	&__guess {
+		display: flex;
+		justify-content: space-between;
+		border: 1px solid red;
+
+		form {
+			display: flex;
+			padding: 2px;
+			border: 2px solid $secondary-color;
+			border-radius: 50px;
+			box-shadow: 0 0 1px 0px $secondary-color inset, 0 0 1px 0px $secondary-color;
+			height: 35px;
+		}
+
+		input {
+			background-color: transparent;
+			flex-grow: 2;
+			margin-left: 0;
+			border: none;
+			color: $secondary-color;
+			width: 250px;
+			padding-left: 10px;
+
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+
+	&__next {
+		margin-left: 1em;
+		width: 4em;
+	}
+}
+
+.guess {
+	&__verify {
+		background-color: transparent;
+		cursor: pointer;
+		transition: 0.5s;
+
+		&:hover {
+			color: $secondary-color;
+		}
 	}
 }

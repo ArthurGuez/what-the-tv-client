@@ -86,12 +86,16 @@ const Login = () => {
 
 					{data.errorMessage ? <span>{data.errorMessage}</span> : null}
 
-					<Button type="submit">Let's Play!</Button>
+					<Button className="form__submit" type="submit">
+						Let's Play!
+					</Button>
 				</form>
 
 				<div className="login__redirect">
 					<p>You don't have an account yet?</p>
-					<Button toLink="/register">Register</Button>
+					<Button className="redirect__button" toLink="/register">
+						Register
+					</Button>
 				</div>
 			</div>
 		);
