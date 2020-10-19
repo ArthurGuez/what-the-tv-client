@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 import { AuthContext } from '../../Context/auth';
 
 import useForm from '../../CustomHooks/useForm';
 
-import Button from '../../Components/Button/Button';
 import Loader from '../../Components/Loader/Loader';
 import { ReactComponent as Heart } from '../../assets/images/heart.svg';
 import { ReactComponent as Skull } from '../../assets/images/skull.svg';
@@ -16,16 +16,33 @@ const API = process.env.REACT_APP_API;
 
 const Play = (props) => {
 	const { snapId } = props.match.params;
-	const { state: authState } = useContext(AuthContext);
+
 	const [snap, setSnap] = useState({});
+	const [solved, setSolved] = useState(null);
+	const [answer, setAnswer] = useState(null);
+
+	const { state: authState } = useContext(AuthContext);
+	const history = useHistory();
 
 	const initialState = {
 		guess: '',
 	};
 
-	const { handleChange, handleSubmit, data, setData } = useForm(initialState, null, submit);
+	const { handleChange, handleSubmit, data, setData, setIsSubmitting } = useForm(
+		initialState,
+		null,
+		submit
+	);
 
 	useEffect(() => {
+		const fetchSnapStatus = async () => {
+			const res = await axios.get(`${API}/snapshots/checkstatus/${snapId}`, {
+				headers: {
+					Authorization: `Bearer ${authState.token}`,
+				},
+			});
+			setSolved(res.data.answered);
+		};
 		const fetchSnap = async () => {
 			const res = await axios.get(`${API}/snapshots/${snapId}`, {
 				headers: {
@@ -34,6 +51,7 @@ const Play = (props) => {
 			});
 			setSnap(res.data);
 		};
+		fetchSnapStatus();
 		fetchSnap();
 	}, [snapId, authState.token]);
 
@@ -50,12 +68,13 @@ const Play = (props) => {
 					},
 				}
 			);
-
-			if (guess.data.message) {
-				// Toggle class qui ajoute du rouge à l'input et une croix
-				return;
+			if (guess.data.guess === false) {
+				setAnswer(false);
+				setIsSubmitting(false);
 			} else {
-				await axios.patch(`${API}/snapshots/solved/${snapId}`);
+				setAnswer(true);
+				setSolved(true);
+				setIsSubmitting(false);
 			}
 		} catch (error) {
 			setData({
@@ -64,6 +83,15 @@ const Play = (props) => {
 			});
 		}
 	}
+
+	const nextSnap = async () => {
+		const res = await axios.get(`${API}/snapshots/random`, {
+			headers: {
+				Authorization: `Bearer ${authState.token}`,
+			},
+		});
+		history.push(`/play/${res.data.id}`);
+	};
 
 	return snap ? (
 		<main className="play">
@@ -85,7 +113,7 @@ const Play = (props) => {
 								? snap.solved > 1
 									? `${snap.solved} Times`
 									: `${snap.solved} Time`
-								: 'Not Yet'}{' '}
+								: 'Not Yet'}
 						</span>
 					</div>
 					<div className="snap__image">
@@ -103,22 +131,40 @@ const Play = (props) => {
 							<Heart className="interactions__like" />
 							<Skull className="interactions__report" />
 						</div>
-						<div className="interactions__guess">
-							<form onSubmit={handleSubmit} noValidate>
-								<label htmlFor="guess"></label>
-								<input
-									type="text"
-									name="guess"
-									id="guess"
-									value={data.guess}
-									onChange={handleChange}
-								/>
-								<button type="submit" className="guess__verify">
-									Try
-								</button>
-							</form>
-						</div>
-						<Button className="interactions__next">Next</Button>
+
+						{solved ? (
+							<div className="interactions__guess--solved">Solved!</div>
+						) : (
+							<div className="interactions__guess">
+								<form
+									onSubmit={handleSubmit}
+									noValidate
+									className={
+										answer === false
+											? 'guess__answer--wrong'
+											: answer === true
+											? 'guess__answer--right'
+											: ''
+									}
+								>
+									<label htmlFor="guess"></label>
+									<input
+										type="text"
+										name="guess"
+										id="guess"
+										value={data.guess}
+										onChange={handleChange}
+									/>
+									<button type="submit" className="guess__verify">
+										Try
+									</button>
+								</form>
+							</div>
+						)}
+
+						<button className="interactions__next" onClick={nextSnap}>
+							Next
+						</button>
 					</div>
 				</div>
 			</section>
