@@ -68,11 +68,15 @@
 }
 
 .interactions {
-	&__like {
-		margin-right: 2em;
+	&__like-report {
+		display: flex;
+		margin-right: 0.3em;
+		flex-wrap: nowrap;
 	}
+
 	&__like,
 	&__report {
+		margin-right: 0.5em;
 		transition: 0.5s;
 		&:hover {
 			fill: $secondary-color;
@@ -82,11 +86,9 @@
 	&__guess {
 		display: flex;
 		justify-content: space-between;
-		border: 1px solid red;
 
 		form {
 			display: flex;
-			padding: 2px;
 			border: 2px solid $secondary-color;
 			border-radius: 50px;
 			box-shadow: 0 0 1px 0px $secondary-color inset, 0 0 1px 0px $secondary-color;
@@ -99,7 +101,7 @@
 			margin-left: 0;
 			border: none;
 			color: $secondary-color;
-			width: 250px;
+			width: 225px;
 			padding-left: 10px;
 
 			&:focus {
@@ -109,7 +111,7 @@
 	}
 
 	&__next {
-		margin-left: 1em;
+		margin-left: 0.5em;
 		width: 4em;
 	}
 }

@@ -99,8 +99,10 @@ const Play = (props) => {
 						<span>☆</span>
 					</div>
 					<div className="snap__interactions">
-						<Heart className="interactions__like" />
-						<Skull className="interactions__report" />
+						<div className="interactions__like-report">
+							<Heart className="interactions__like" />
+							<Skull className="interactions__report" />
+						</div>
 						<div className="interactions__guess">
 							<form onSubmit={handleSubmit} noValidate>
 								<label htmlFor="guess"></label>
@@ -115,8 +117,8 @@ const Play = (props) => {
 									Try
 								</button>
 							</form>
-							<Button className="interactions__next">Next</Button>
 						</div>
+						<Button className="interactions__next">Next</Button>
 					</div>
 				</div>
 			</section>
