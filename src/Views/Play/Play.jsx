@@ -157,6 +157,7 @@ const Play = (props) => {
 										id="guess"
 										value={data.guess}
 										onChange={handleChange}
+										autoFocus
 									/>
 									<button type="submit" className="guess__verify">
 										Try

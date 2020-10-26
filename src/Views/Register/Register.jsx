@@ -169,6 +169,8 @@ const Register = () => {
 						/>
 					</div>
 
+					{errors.terms ? <span>{errors.terms}</span> : null}
+
 					{data.errorMessage ? <span>{data.errorMessage}</span> : null}
 
 					<Button className="form__submit" type="submit">

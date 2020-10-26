@@ -26,5 +26,10 @@ export default function validateRegister(values) {
 		errors.passwordConfirm = 'Passwords do not match';
 	}
 
+	if (values.terms !== true) {
+		errors.terms =
+			'Oops, you must agree to our Terms & Conditions before being able to register to What The TV';
+	}
+
 	return errors;
 }

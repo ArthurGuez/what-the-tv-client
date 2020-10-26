@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import Modal from 'react-modal';
 
 import { AuthContext } from '../../Context/auth';
 
@@ -9,8 +10,11 @@ import axios from 'axios';
 
 const API = process.env.REACT_APP_API;
 
+Modal.setAppElement('#root');
+
 const Settings = () => {
 	const { state: authState, dispatch } = useContext(AuthContext);
+	const [modalIsOpen, setModalIsOpen] = useState(false);
 
 	const deleteAccount = async () => {
 		const res = await axios.delete(`${API}/users/delete`, {
@@ -43,9 +47,27 @@ const Settings = () => {
 				<div className="security__delete">
 					<p>Your Account</p>
 					<p>Do you want to leave us?</p>
-					<Button className="delete__button" onClick={deleteAccount}>
-						Delete
+					<Button className="delete__button" onClick={() => setModalIsOpen(true)}>
+						Goodbye
 					</Button>
+					<Modal
+						className="delete__modal"
+						overlayClassName="delete__modal-overlay"
+						isOpen={modalIsOpen}
+						onRequestClose={() => setModalIsOpen(false)}
+					>
+						<h2>Hold On</h2>
+						<p>Are you sure you want to delete your account?</p>
+						<p>If you delete your account, you will permanently lose your profile</p>
+						<div className="modal__controls">
+							<Button className="delete__button" onClick={() => setModalIsOpen(false)}>
+								Go Back
+							</Button>
+							<Button className="delete__button" onClick={deleteAccount}>
+								Delete
+							</Button>
+						</div>
+					</Modal>
 				</div>
 			</section>
 		</main>

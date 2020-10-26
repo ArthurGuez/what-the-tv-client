@@ -4,7 +4,7 @@ import './Error.scss';
 const Error = (props) => {
 	const { className, children, toLink, type } = props;
 
-	return <div>{children}</div>;
+	return <div className={className}>{children}</div>;
 };
 
 export default Error;

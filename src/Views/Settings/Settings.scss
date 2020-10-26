@@ -1,3 +1,5 @@
+@import '../../../vars.scss';
+
 .settings {
 	&__security {
 		display: flex;
@@ -9,6 +11,8 @@
 .security {
 	&__delete {
 		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
 
 		& > * {
 			padding: 0 2em;
@@ -17,7 +21,43 @@
 }
 
 .delete {
+	&__modal {
+		text-align: center;
+		position: absolute;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: $background-color;
+		opacity: 0.8;
+		width: 60%;
+		height: 40vh;
+		padding: 2em 0;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&__modal-overlay {
+		position: fixed;
+		background-color: rgba(0, 0, 0, 0.75);
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+
 	&__button {
 		width: 12em;
+	}
+}
+
+.modal {
+	&__controls {
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
 	}
 }
