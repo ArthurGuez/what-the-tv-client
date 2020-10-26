@@ -81,6 +81,7 @@ const Play = (props) => {
 				...data,
 				errorMessage: error.response.data.description,
 			});
+			setIsSubmitting(false);
 		}
 	}
 
@@ -90,6 +91,8 @@ const Play = (props) => {
 				Authorization: `Bearer ${authState.token}`,
 			},
 		});
+		setData(initialState);
+		setAnswer(null);
 		history.push(`/play/${res.data.id}`);
 	};
 

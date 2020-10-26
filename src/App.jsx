@@ -11,6 +11,9 @@ import Home from './Views/Home/Home';
 import Register from './Views/Register/Register';
 import Login from './Views/Login/Login';
 import Play from './Views/Play/Play';
+import Contribute from './Views/Contribute/Contribute';
+import Profile from './Views/Profile/Profile';
+import Settings from './Views/Settings/Settings';
 
 import './App.scss';
 
@@ -62,6 +65,9 @@ function App() {
 
 					<PrivateRoute exact path="/" component={Home} />
 					<PrivateRoute exact path="/play/:snapId" component={Play} />
+					<PrivateRoute exact path="/contribute" component={Contribute} />
+					<PrivateRoute exact path="/profile" component={Profile} />
+					<PrivateRoute exact path="/profile/settings" component={Settings} />
 				</Switch>
 			</Router>
 		</AuthContext.Provider>

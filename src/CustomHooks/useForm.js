@@ -5,17 +5,17 @@ const useForm = (initialState, validate, callback) => {
 	const [errors, setErrors] = useState({});
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	const handleChange = async (event) => {
+	const handleChange = (event) => {
 		const { name, value } = event.target;
-		await setData({
+		setData({
 			...data,
 			[name]: value,
 		});
 	};
 
-	const handleCheck = async (event) => {
+	const handleCheck = (event) => {
 		const { name, checked } = event.target;
-		await setData({
+		setData({
 			...data,
 			[name]: checked,
 		});

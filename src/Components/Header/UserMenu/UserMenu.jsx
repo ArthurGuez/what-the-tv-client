@@ -25,6 +25,7 @@ const UserMenu = ({ open, setOpen }) => {
 	function iconOnClick(event) {
 		event.stopPropagation();
 		setOpen(true);
+		// setOpen(!open) pourrait fonctionner ???
 		window.addEventListener('click', windowOnClick);
 	}
 
@@ -41,7 +42,12 @@ const UserMenu = ({ open, setOpen }) => {
 				<div className="userMenu">
 					{state.isAuthenticated ? (
 						<ul>
-							<li>My Account</li>
+							<li>
+								<a href="/profile"> Account</a>
+							</li>
+							<li>
+								<a href="/profile/settings">Settings</a>
+							</li>
 							<li onClick={logOut}>Logout</li>
 						</ul>
 					) : (

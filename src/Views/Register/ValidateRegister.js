@@ -1,9 +1,9 @@
 export default function validateRegister(values) {
 	const errors = {};
-	if (!values.name.trim()) {
-		errors.name = 'Name required';
-	} else if (typeof values.name !== 'string') {
-		errors.name = 'Name is invalid';
+	if (!values.username.trim()) {
+		errors.username = 'Username required';
+	} else if (typeof values.username !== 'string') {
+		errors.username = 'Username is invalid';
 	}
 
 	if (!values.email) {

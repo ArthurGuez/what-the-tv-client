@@ -6,7 +6,7 @@ const reducer = (state, action) => {
 				...state,
 				isAuthenticated: true,
 				token: action.payload.data.token,
-				user: action.payload.data.user,
+				username: action.payload.data.username,
 				isFetching: false,
 			};
 		case 'LOGOUT':
@@ -15,7 +15,7 @@ const reducer = (state, action) => {
 				...state,
 				isAuthenticated: false,
 				token: null,
-				user: null,
+				username: null,
 				isFetching: false,
 			};
 		case 'LOAD_USER':
@@ -23,7 +23,7 @@ const reducer = (state, action) => {
 				...state,
 				isAuthenticated: true,
 				token: action.token,
-				user: action.payload.name,
+				username: action.payload.username,
 				isFetching: false,
 			};
 		case 'NO_USER':
@@ -31,7 +31,7 @@ const reducer = (state, action) => {
 				...state,
 				isAuthenticated: false,
 				token: null,
-				user: null,
+				username: null,
 				isFetching: false,
 			};
 		default:

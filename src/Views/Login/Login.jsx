@@ -2,8 +2,6 @@ import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
-import './Login.scss';
-
 import { AuthContext } from '../../Context/auth';
 
 import useForm from '../../CustomHooks/useForm';
@@ -11,6 +9,8 @@ import validateLogin from './ValidateLogin';
 
 import Button from '../../Components/Button/Button';
 import Input from '../../Components/Input/Input';
+
+import './Login.scss';
 
 const API = process.env.REACT_APP_API;
 
@@ -56,7 +56,7 @@ const Login = () => {
 		return <Redirect to="/" />;
 	} else {
 		return (
-			<div className="login">
+			<main className="login">
 				<h1>Log In To What The TV</h1>
 				<form className="login__form" onSubmit={handleSubmit} noValidate>
 					<div className="form__input">
@@ -97,7 +97,7 @@ const Login = () => {
 						Register
 					</Button>
 				</div>
-			</div>
+			</main>
 		);
 	}
 };

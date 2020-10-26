@@ -16,7 +16,7 @@ const Register = () => {
 	const initialState = {
 		username: '',
 		email: '',
-		birthday: '',
+		birthday: undefined,
 		country: '',
 		gender: '',
 		password: '',
@@ -61,7 +61,7 @@ const Register = () => {
 		return <Redirect to="/login" />;
 	} else {
 		return (
-			<div className="register">
+			<main className="register">
 				<h1>Join What The TV</h1>
 				<form className="register__form" onSubmit={handleSubmit} noValidate>
 					<h2>Personal Infos</h2>
@@ -182,7 +182,7 @@ const Register = () => {
 						Login
 					</Button>
 				</div>
-			</div>
+			</main>
 		);
 	}
 };
