@@ -17,8 +17,8 @@ const Register = () => {
 		username: '',
 		email: '',
 		birthday: undefined,
-		country: '',
-		gender: '',
+		country: undefined,
+		gender: undefined,
 		password: '',
 		passwordConfirm: '',
 		newsletter: false,
@@ -93,7 +93,7 @@ const Register = () => {
 							type="date"
 							name="birthday"
 							id="birthday"
-							value={data.birthday}
+							defaultValue={data.birthday}
 							onChange={handleChange}
 						/>
 					</div>
@@ -130,7 +130,7 @@ const Register = () => {
 						/>
 					</div>
 
-					{errors.password ? <div>{errors.password}</div> : null}
+					{errors.password ? <span className="form__error">{errors.password}</span> : null}
 
 					<div className="form__input">
 						<label htmlFor="passwordConfirm">Confirm Your Password *</label>
@@ -143,7 +143,9 @@ const Register = () => {
 						/>
 					</div>
 
-					{errors.passwordConfirm ? <span>{errors.passwordConfirm}</span> : null}
+					{errors.passwordConfirm ? (
+						<span className="form__error">{errors.passwordConfirm}</span>
+					) : null}
 
 					<h2>Agreements</h2>
 
@@ -169,9 +171,9 @@ const Register = () => {
 						/>
 					</div>
 
-					{errors.terms ? <span>{errors.terms}</span> : null}
+					{errors.terms ? <span className="form__error">{errors.terms}</span> : null}
 
-					{data.errorMessage ? <span>{data.errorMessage}</span> : null}
+					{data.errorMessage ? <span className="form__error">{data.errorMessage}</span> : null}
 
 					<Button className="form__submit" type="submit">
 						It's Showtime!

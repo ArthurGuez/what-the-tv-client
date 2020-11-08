@@ -4,13 +4,15 @@ import Button from '../../Button/Button';
 
 import './Menu.scss';
 
+const API = process.env.REACT_APP_API;
+
 const Menu = () => {
 	return (
 		<div className="menu">
 			<Button className={'menu__item'} toLink="/discover">
 				Discover
 			</Button>
-			<Button className={'menu__item'} toLink="/play">
+			<Button className={'menu__item'} toLink="/play/random">
 				Play
 			</Button>
 			<Button className={'menu__item'} toLink="/contribute">

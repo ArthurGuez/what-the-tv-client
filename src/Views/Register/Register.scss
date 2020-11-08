@@ -15,6 +15,10 @@
 .form {
 	&__submit {
 		width: 12em;
+		margin-top: 0.8em;
+	}
+	&__error {
+		color: red;
 	}
 }
 

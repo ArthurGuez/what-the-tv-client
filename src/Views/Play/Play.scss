@@ -135,7 +135,7 @@
 }
 
 .guess {
-	&__answer {
+	&__guessed {
 		&--wrong {
 			transition: 0.5s;
 			border: 2px solid red !important;

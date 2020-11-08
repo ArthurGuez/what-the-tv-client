@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import axios from 'axios';
 import Modal from 'react-modal';
 
 import { AuthContext } from '../../Context/auth';
@@ -6,7 +7,6 @@ import { AuthContext } from '../../Context/auth';
 import Button from '../../Components/Button/Button';
 
 import './Settings.scss';
-import axios from 'axios';
 
 const API = process.env.REACT_APP_API;
 

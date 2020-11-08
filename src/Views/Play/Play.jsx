@@ -19,7 +19,7 @@ const Play = (props) => {
 
 	const [snap, setSnap] = useState({});
 	const [solved, setSolved] = useState(null);
-	const [answer, setAnswer] = useState(null);
+	const [guess, setGuess] = useState(null);
 
 	const { state: authState } = useContext(AuthContext);
 	const history = useHistory();
@@ -43,6 +43,10 @@ const Play = (props) => {
 			});
 			setSolved(res.data.answered);
 		};
+		fetchSnapStatus();
+	}, [snapId, authState.token]);
+
+	useEffect(() => {
 		const fetchSnap = async () => {
 			const res = await axios.get(`${API}/snapshots/${snapId}`, {
 				headers: {
@@ -51,13 +55,12 @@ const Play = (props) => {
 			});
 			setSnap(res.data);
 		};
-		fetchSnapStatus();
 		fetchSnap();
-	}, [snapId, authState.token]);
+	}, [snapId, authState.token, solved]);
 
 	async function submit() {
 		try {
-			const guess = await axios.post(
+			const res = await axios.post(
 				`${API}/snapshots/guess/${snapId}`,
 				{
 					guess: data.guess,
@@ -68,14 +71,13 @@ const Play = (props) => {
 					},
 				}
 			);
-			if (guess.data.guess === false) {
-				setAnswer(false);
-				setIsSubmitting(false);
+			if (res.data.guess === false) {
+				setGuess(false);
 			} else {
-				setAnswer(true);
+				setGuess(true);
 				setSolved(true);
-				setIsSubmitting(false);
 			}
+			setIsSubmitting(false);
 		} catch (error) {
 			setData({
 				...data,
@@ -92,7 +94,7 @@ const Play = (props) => {
 			},
 		});
 		setData(initialState);
-		setAnswer(null);
+		setGuess(null);
 		history.push(`/play/${res.data.id}`);
 	};
 
@@ -136,17 +138,17 @@ const Play = (props) => {
 						</div>
 
 						{solved ? (
-							<div className="interactions__guess--solved">Solved!</div>
+							<div className="interactions__guess--solved">You solved it!</div>
 						) : (
 							<div className="interactions__guess">
 								<form
 									onSubmit={handleSubmit}
 									noValidate
 									className={
-										answer === false
-											? 'guess__answer--wrong'
-											: answer === true
-											? 'guess__answer--right'
+										guess === false
+											? 'guess__guessed--wrong'
+											: guess === true
+											? 'guess__guessed--right'
 											: ''
 									}
 								>
