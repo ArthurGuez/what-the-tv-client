@@ -74,6 +74,9 @@ const Register = () => {
 							value={data.username}
 							onChange={handleChange}
 						/>
+						<div className="input__requirement">
+							Only alphanumerical characters, - and _ are accepted.
+						</div>
 					</div>
 
 					<div className="form__input">
@@ -128,6 +131,7 @@ const Register = () => {
 							value={data.password}
 							onChange={handleChange}
 						/>
+						<div className="input__requirement">Please use both numbers and letters.</div>
 					</div>
 
 					{errors.password ? <span className="form__error">{errors.password}</span> : null}
@@ -161,7 +165,7 @@ const Register = () => {
 					</div>
 
 					<div className="form__input">
-						<label htmlFor="terms">I agree to the terms and conditions of What The TV</label>
+						<label htmlFor="terms">I agree to the terms and conditions of What The TV *</label>
 						<Input
 							type="checkbox"
 							name="terms"
