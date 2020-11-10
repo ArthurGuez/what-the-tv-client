@@ -9,8 +9,6 @@ export default function validateRegister(values) {
 	if (!values.email) {
 		errors.email = 'Email required';
 	} else if (!/\S+@\S+\.\S+/.test(values.email)) {
-		errors.email = 'Une adresse e-mail est obligatoire.';
-	} else if (!/\S+@\S+\.\S+/.test(values.email)) {
 		errors.email = 'Email is invalid';
 	}
 

@@ -6,6 +6,7 @@ import reducer from './reducer';
 import { AuthContext } from './Context/auth';
 
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 import Header from './Components/Header/Header';
 import Home from './Views/Home/Home';
 import Register from './Views/Register/Register';
@@ -60,8 +61,8 @@ function App() {
 			<Header />
 			<Router>
 				<Switch>
-					<Route exact path="/register" component={Register} />
-					<Route exact path="/login" component={Login} />
+					<PublicRoute exact path="/register" component={Register} />
+					<PublicRoute exact path="/login" component={Login} />
 
 					<PrivateRoute exact path="/" component={Home} />
 					<PrivateRoute exact path="/play/:snapId" component={Play} />
