@@ -35,16 +35,23 @@ function App() {
 			const token = localStorage.getItem('token');
 
 			if (token) {
-				const res = await axios.get(`${API}/users/me`, {
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				});
-				if (res.status === 200) {
+				try {
+					const res = await axios.get(`${API}/users/me`, {
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					});
+
+					if (res.status === 200) {
+						dispatch({
+							type: 'LOAD_USER',
+							payload: res.data.user,
+							token,
+						});
+					}
+				} catch (error) {
 					dispatch({
-						type: 'LOAD_USER',
-						payload: res.data.user,
-						token,
+						type: 'LOGOUT',
 					});
 				}
 			} else {
@@ -69,6 +76,7 @@ function App() {
 					<PrivateRoute exact path="/contribute" component={Contribute} />
 					<PrivateRoute exact path="/profile" component={Profile} />
 					<PrivateRoute exact path="/profile/settings" component={Settings} />
+					<Route path="*" commonen></Route>
 				</Switch>
 			</Router>
 		</AuthContext.Provider>
