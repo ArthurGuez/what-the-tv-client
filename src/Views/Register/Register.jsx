@@ -52,10 +52,15 @@ const Register = () => {
 		} catch (error) {
 			setData({
 				...data,
-				errorMessage: error.response.data.description,
+				errorsArray: error.response.data.errors,
 			});
 		}
 	}
+
+	const findError = (errorField) => {
+		const errorMessage = data.errorsArray.find((error) => error.field === errorField).message;
+		return <span className="form__error">{errorMessage}</span>;
+	};
 
 	if (redirect) {
 		return <Redirect to="/login" />;
@@ -79,6 +84,10 @@ const Register = () => {
 						</div>
 					</div>
 
+					{data.errorsArray && data.errorsArray.find((error) => error.field === 'username')
+						? findError('username')
+						: null}
+
 					<div className="form__input">
 						<label htmlFor="email">Your Email *</label>
 						<Input
@@ -89,6 +98,10 @@ const Register = () => {
 							onChange={handleChange}
 						/>
 					</div>
+
+					{data.errorsArray && data.errorsArray.find((error) => error.field === 'email')
+						? findError('email')
+						: null}
 
 					<div className="form__input">
 						<label htmlFor="birthday">Your Date Of Birth</label>
@@ -101,6 +114,10 @@ const Register = () => {
 						/>
 					</div>
 
+					{data.errorsArray && data.errorsArray.find((error) => error.field === 'birthday')
+						? findError('birthday')
+						: null}
+
 					<div className="form__input">
 						<label htmlFor="country">Your Country</label>
 						<select name="country" id="country" onChange={handleChange}>
@@ -109,6 +126,10 @@ const Register = () => {
 							<option value="United-States">United-States</option>
 						</select>
 					</div>
+
+					{data.errorsArray && data.errorsArray.find((error) => error.field === 'country')
+						? findError('country')
+						: null}
 
 					<div className="form__input">
 						<label htmlFor="male">Male</label>
@@ -120,6 +141,10 @@ const Register = () => {
 						<label htmlFor="other">Other</label>
 						<Input type="radio" id="other" name="gender" value="Other" onChange={handleChange} />
 					</div>
+
+					{data.errorsArray && data.errorsArray.find((error) => error.field === 'gender')
+						? findError('gender')
+						: null}
 
 					<h2>Security</h2>
 					<div className="form__input">
@@ -151,6 +176,10 @@ const Register = () => {
 						<span className="form__error">{errors.passwordConfirm}</span>
 					) : null}
 
+					{data.errorsArray && data.errorsArray.find((error) => error.field === 'password')
+						? findError('password')
+						: null}
+
 					<h2>Agreements</h2>
 
 					<div className="form__input">
@@ -163,6 +192,10 @@ const Register = () => {
 							onChange={handleCheck}
 						/>
 					</div>
+
+					{data.errorsArray && data.errorsArray.find((error) => error.field === 'newsletter')
+						? findError('newsletter')
+						: null}
 
 					<div className="form__input">
 						<label htmlFor="terms">I agree to the terms and conditions of What The TV *</label>
@@ -177,7 +210,9 @@ const Register = () => {
 
 					{errors.terms ? <span className="form__error">{errors.terms}</span> : null}
 
-					{data.errorMessage ? <span className="form__error">{data.errorMessage}</span> : null}
+					{data.errorsArray && data.errorsArray.find((error) => error.field === 'terms')
+						? findError('terms')
+						: null}
 
 					<Button className="form__submit" type="submit">
 						It's Showtime!
