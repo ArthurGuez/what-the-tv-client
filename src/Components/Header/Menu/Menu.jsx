@@ -4,8 +4,6 @@ import Button from '../../Button/Button';
 
 import './Menu.scss';
 
-const API = process.env.REACT_APP_API;
-
 const Menu = () => {
 	return (
 		<div className="menu">

@@ -8,13 +8,16 @@ import { AuthContext } from './Context/auth';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import Header from './Components/Header/Header';
+import Footer from './Components/Footer/Footer';
 import Home from './Views/Home/Home';
 import Register from './Views/Register/Register';
 import Login from './Views/Login/Login';
 import Play from './Views/Play/Play';
+import PlayRandom from './Components/PlayRandom/PlayRandom';
 import Contribute from './Views/Contribute/Contribute';
 import Profile from './Views/Profile/Profile';
 import Settings from './Views/Settings/Settings';
+import Error from './Views/Error/Error';
 
 import './App.scss';
 
@@ -70,15 +73,16 @@ function App() {
 				<Switch>
 					<PublicRoute exact path="/register" component={Register} />
 					<PublicRoute exact path="/login" component={Login} />
-
 					<PrivateRoute exact path="/" component={Home} />
+					<PrivateRoute exact path="/play/random" component={PlayRandom} />
 					<PrivateRoute exact path="/play/:snapId" component={Play} />
 					<PrivateRoute exact path="/contribute" component={Contribute} />
 					<PrivateRoute exact path="/profile" component={Profile} />
 					<PrivateRoute exact path="/profile/settings" component={Settings} />
-					<Route path="*" commonen></Route>
+					<Route path="*" component={Error} />
 				</Switch>
 			</Router>
+			<Footer />
 		</AuthContext.Provider>
 	);
 }
