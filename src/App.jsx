@@ -23,7 +23,7 @@ import './App.scss';
 
 const API = process.env.REACT_APP_API;
 
-function App() {
+const App = () => {
 	const initialState = {
 		isAuthenticated: false,
 		token: localStorage.getItem('token'),
@@ -85,6 +85,6 @@ function App() {
 			<Footer />
 		</AuthContext.Provider>
 	);
-}
+};
 
 export default App;

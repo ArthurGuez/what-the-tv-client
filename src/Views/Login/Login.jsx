@@ -47,10 +47,15 @@ const Login = () => {
 		} catch (error) {
 			setData({
 				...data,
-				errorMessage: error.response.data.description,
+				errorsArray: error.response.data.errors,
 			});
 		}
 	}
+
+	const findError = (errorField) => {
+		const errorMessage = data.errorsArray.find((error) => error.field === errorField).message;
+		return <span className="form__error">{errorMessage}</span>;
+	};
 
 	if (redirect) {
 		return <Redirect to="/" />;
@@ -71,6 +76,11 @@ const Login = () => {
 
 						{errors.username ? <span>{errors.username}</span> : null}
 					</div>
+
+					{data.errorsArray && data.errorsArray.find((error) => error.field === 'username')
+						? findError('username')
+						: null}
+
 					<div className="form__input">
 						<label htmlFor="password">Your Password</label>
 						<Input
@@ -84,7 +94,9 @@ const Login = () => {
 						{errors.password ? <span>{errors.password}</span> : null}
 					</div>
 
-					{data.errorMessage ? <span>{data.errorMessage}</span> : null}
+					{data.errorsArray && data.errorsArray.find((error) => error.field === 'password')
+						? findError('password')
+						: null}
 
 					<Button className="form__submit" type="submit">
 						Let's Play!

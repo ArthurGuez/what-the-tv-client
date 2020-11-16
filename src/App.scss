@@ -29,6 +29,10 @@ body {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+
+		@include desktop {
+			padding: 5rem;
+		}
 	}
 
 	h1 {

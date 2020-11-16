@@ -45,7 +45,6 @@ const Register = () => {
 				newsletter: data.newsletter,
 				terms: data.terms,
 			});
-
 			if (res.status === 201) {
 				setRedirect(true);
 			}

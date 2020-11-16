@@ -8,9 +8,12 @@
 	top: 0;
 	width: 100%;
 	padding: 0 1rem;
-	opacity: 0.95;
 	z-index: 100;
 	background-color: $background-color;
+
+	@include desktop {
+		padding: 0 5rem;
+	}
 
 	&__menu {
 		@include desktop {
