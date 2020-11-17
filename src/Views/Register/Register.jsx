@@ -83,6 +83,8 @@ const Register = () => {
 						</div>
 					</div>
 
+					{errors.username ? <span className="form__error">{errors.username}</span> : null}
+
 					{data.errorsArray && data.errorsArray.find((error) => error.field === 'username')
 						? findError('username')
 						: null}
@@ -97,6 +99,8 @@ const Register = () => {
 							onChange={handleChange}
 						/>
 					</div>
+
+					{errors.email ? <span className="form__error">{errors.email}</span> : null}
 
 					{data.errorsArray && data.errorsArray.find((error) => error.field === 'email')
 						? findError('email')

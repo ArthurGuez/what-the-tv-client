@@ -25,7 +25,6 @@ const UserMenu = ({ open, setOpen }) => {
 	function iconOnClick(event) {
 		event.stopPropagation();
 		setOpen(true);
-		// setOpen(!open) pourrait fonctionner ???
 		window.addEventListener('click', windowOnClick);
 	}
 
