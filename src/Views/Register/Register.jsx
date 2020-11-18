@@ -52,6 +52,7 @@ const Register = () => {
 			setData({
 				...data,
 				errorsArray: error.response.data.errors,
+				errorMessage: error.response.data.description,
 			});
 		}
 	}
@@ -216,6 +217,8 @@ const Register = () => {
 					{data.errorsArray && data.errorsArray.find((error) => error.field === 'terms')
 						? findError('terms')
 						: null}
+
+					{data.errorMessage ? <span className="form__error">{data.errorMessage}</span> : null}
 
 					<Button className="form__submit" type="submit">
 						It's Showtime!

@@ -36,7 +36,6 @@ const Login = () => {
 				username: data.username,
 				password: data.password,
 			});
-
 			if (res.status === 200) {
 				dispatch({
 					type: 'LOGIN',
@@ -48,6 +47,7 @@ const Login = () => {
 			setData({
 				...data,
 				errorsArray: error.response.data.errors,
+				errorMessage: error.response.data.description,
 			});
 		}
 	}
@@ -97,6 +97,8 @@ const Login = () => {
 					{data.errorsArray && data.errorsArray.find((error) => error.field === 'password')
 						? findError('password')
 						: null}
+
+					{data.errorMessage ? <span className="form__error">{data.errorMessage}</span> : null}
 
 					<Button className="form__submit" type="submit">
 						Let's Play!
