@@ -23,14 +23,14 @@ import './App.scss';
 
 const API = process.env.REACT_APP_API;
 
-const App = () => {
-	const initialState = {
-		isAuthenticated: false,
-		token: localStorage.getItem('token'),
-		user: null,
-		isFetching: true,
-	};
+const initialState = {
+	isAuthenticated: false,
+	token: localStorage.getItem('token'),
+	user: null,
+	isFetching: true,
+};
 
+const App = () => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	useEffect(() => {
