@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const useForm = (initialState, validate, callback) => {
 	const [data, setData] = useState(initialState);
 	const [errors, setErrors] = useState({});
-	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
@@ -23,20 +22,10 @@ const useForm = (initialState, validate, callback) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		setData({
-			...data,
-		});
-		if (validate) {
-			setErrors(validate(data));
-		}
-		setIsSubmitting(true);
-	};
 
-	useEffect(() => {
-		if (Object.keys(errors).length === 0 && isSubmitting) {
-			callback();
-		}
-	}, [errors, isSubmitting]);
+		if (validate) setErrors(validate(data));
+		if (Object.keys(errors).length === 0) callback();
+	};
 
 	return {
 		handleChange,
@@ -45,7 +34,6 @@ const useForm = (initialState, validate, callback) => {
 		data,
 		setData,
 		errors,
-		setIsSubmitting,
 	};
 };
 

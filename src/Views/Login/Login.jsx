@@ -14,23 +14,17 @@ import './Login.scss';
 
 const API = process.env.REACT_APP_API;
 
+const initialState = {
+	username: '',
+	password: '',
+};
+
 const Login = () => {
-	const initialState = {
-		username: '',
-		password: '',
-	};
-
 	const { dispatch } = useContext(AuthContext);
-
-	const { handleChange, handleSubmit, data, setData, errors } = useForm(
-		initialState,
-		validateLogin,
-		submit
-	);
 
 	const [redirect, setRedirect] = useState(false);
 
-	async function submit() {
+	const submit = async () => {
 		try {
 			const res = await axios.post(`${API}/users/signin`, {
 				username: data.username,
@@ -44,13 +38,19 @@ const Login = () => {
 				setRedirect(true);
 			}
 		} catch (error) {
-			setData({
+			return setData({
 				...data,
 				errorsArray: error.response.data.errors,
 				errorMessage: error.response.data.description,
 			});
 		}
-	}
+	};
+
+	const { handleChange, handleSubmit, data, setData, errors } = useForm(
+		initialState,
+		validateLogin,
+		submit
+	);
 
 	const findError = (errorField) => {
 		const errorMessage = data.errorsArray.find((error) => error.field === errorField).message;

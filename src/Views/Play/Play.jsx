@@ -28,11 +28,7 @@ const Play = (props) => {
 		guess: '',
 	};
 
-	const { handleChange, handleSubmit, data, setData, setIsSubmitting } = useForm(
-		initialState,
-		null,
-		submit
-	);
+	const { handleChange, handleSubmit, data, setData } = useForm(initialState, null, submit);
 
 	useEffect(() => {
 		const fetchSnapStatus = async () => {
@@ -77,13 +73,11 @@ const Play = (props) => {
 				setGuess(true);
 				setSolved(true);
 			}
-			setIsSubmitting(false);
 		} catch (error) {
 			setData({
 				...data,
 				errorMessage: error.response.data.description,
 			});
-			setIsSubmitting(false);
 		}
 	}
 
