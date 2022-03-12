@@ -12,19 +12,19 @@ import Input from '../../Components/Input/Input';
 
 const API = process.env.REACT_APP_API;
 
-const Register = () => {
-	const initialState = {
-		username: '',
-		email: '',
-		birthday: undefined,
-		country: undefined,
-		gender: undefined,
-		password: '',
-		passwordConfirm: '',
-		newsletter: false,
-		terms: false,
-	};
+const initialState = {
+	username: '',
+	email: '',
+	birthday: undefined,
+	country: undefined,
+	gender: undefined,
+	password: '',
+	passwordConfirm: '',
+	newsletter: false,
+	terms: false,
+};
 
+const Register = () => {
 	const { handleChange, handleCheck, handleSubmit, data, setData, errors } = useForm(
 		initialState,
 		validateRegister,

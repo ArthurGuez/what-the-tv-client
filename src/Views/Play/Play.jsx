@@ -14,6 +14,10 @@ import './Play.scss';
 
 const API = process.env.REACT_APP_API;
 
+const initialState = {
+	guess: '',
+};
+
 const Play = (props) => {
 	const { snapId } = props.match.params;
 
@@ -23,10 +27,6 @@ const Play = (props) => {
 
 	const { state: authState } = useContext(AuthContext);
 	const history = useHistory();
-
-	const initialState = {
-		guess: '',
-	};
 
 	const { handleChange, handleSubmit, data, setData } = useForm(initialState, null, submit);
 
